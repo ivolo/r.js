@@ -213,7 +213,7 @@ function (lang,   logger,   file,          parse,    optimize,   pragma,
         if (modules) {
             modules.forEach(function (module) {
                 if (module.name) {
-                    module._sourcePath = buildContext.nameToUrl(module.name);
+                    module._sourcePath = buildContext.nameToUrl(module.name, '', { fullName : config.appDir});
                     //If the module does not exist, and this is not a "new" module layer,
                     //as indicated by a true "create" property on the module, and
                     //it is not a plugin-loaded resource, then throw an error.
@@ -247,7 +247,7 @@ function (lang,   logger,   file,          parse,    optimize,   pragma,
             if (modules) {
                 modules.forEach(function (module) {
                     if (module.name) {
-                        module._buildPath = buildContext.nameToUrl(module.name, null);
+                        module._buildPath = buildContext.nameToUrl(module.name, '', { fullName : config.dir});
                         if (!module.create) {
                             file.copyFile(module._sourcePath, module._buildPath);
                         }
